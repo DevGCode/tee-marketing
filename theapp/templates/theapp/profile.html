@@ -1,0 +1,281 @@
+<!--https://www.jasongaylord.com/blog/2020/05/21/copy-to-clipboard-using-javascript-->
+
+
+{% extends "theapp/base.html" %} {% block content %}
+
+{% load static %}
+
+
+<style>
+/* Lg screen */
+@media screen and (min-width: 600px) {
+    #mobile-call-btn {
+        display:none;
+    }
+
+    #desktop-call-btn {
+       display:block;
+    }
+
+
+}
+
+
+/* Small screen */
+@media screen and (max-width: 599px) {
+
+   #mobile-call-btn {
+        display:block;
+    }
+
+    #desktop-call-btn {
+       display:none;
+    }
+
+}
+
+</style>
+
+
+  <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Business Profile</h4>
+                  <p class="card-category">Get business details</p>
+                </div>
+                <div class="card-body">
+                  <h3>{{ profile.biz_name }}</h3>
+                  <p>{{ profile.address }}</p>
+                  {% if profile.is_course %}
+                    <p><i>The weather on the course today is {{weather_description}} with a temp of {{temp}}°F</i></p>
+                  {% endif %}
+                  <a class="mb-4 btn btn-sm btn-success btn-round" target="__blank" href="{{ profile.link }}">More Info</a>
+
+
+<!-- start check for sponsor-->
+{% if profile.is_course %}
+
+                  <h4>Scorecard Script</h4>
+
+                    {% for script in golf_scripts %}
+                        <p style="color:#4ea752;">{{script.body}}</p>
+                        <br>
+                        <a href="{% url 'update-script' script.id %}" class="btn btn-sm btn-success btn-round">Update</a>
+                    {% endfor %}
+
+                    <hr>
+
+                  <h4>Scorecard Voicemail</h4>
+
+                  {% for script in golf_voicemails %}
+                        <p style="color:#4ea752;">{{script.body}}</p>
+                        <br>
+                        <a href="{% url 'update-voicemail' script.id %}" class="btn btn-sm btn-success btn-round">Update</a>
+                    {% endfor %}
+
+<!-- end check for scorecard -->
+{% endif %}
+
+<!-- start check for sponsor-->
+{% if profile.is_sponsor %}
+
+                  <h4>Sponsor Script</h4>
+
+                  {% for script in sponsor_scripts %}
+                        <p style="color:#4ea752;">{{script.body}}</p>
+                        <br>
+                        <a href="{% url 'update-script' script.id %}" class="btn btn-sm btn-success btn-round">Update</a>
+                    {% endfor %}
+
+                    <hr>
+
+                  <h4>Sponsor Voicemail</h4>
+
+                  {% for script in sponsor_voicemails %}
+                        <p style="color:#4ea752;">{{script.body}}</p>
+                        <br>
+                        <a href="{% url 'update-voicemail' script.id %}" class="btn btn-sm btn-success btn-round">Update</a>
+                    {% endfor %}
+
+<!-- end check for sponsor-->
+{% endif %}
+
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+
+
+
+{% if profile.dont_call %}
+<div class="text-center mb-4">
+  <p class="text-danger">DO NOT CALL THIS PROSPECT</p>
+</div>
+{% else %}
+{% if sponsor_voicemails %}
+            {% else %}
+                <a href="{% url 'create-scripts' profile.id%}" class="btn btn-danger btn-round">Create Scripts</a>
+            {% endif %}
+              <div class="card card-profile">
+
+
+                <div class="card-body">
+
+
+                  <span id="desktop-call-btn" id="callBtn" class="btn btn-success btn-round" data-copy-text="{{profile.phone}}"><i class="material-icons">content_paste</i> Copy Phone</span>
+                  <a
+                  id="mobile-call-btn"
+                  onclick="
+                  timer = document.getElementById('timer');
+                  timer.style.display = 'block';"
+                  href="tel:{{profile.phone}}"
+                  class="mt-3 btn btn-success btn-round">
+                  <i class="material-icons">phone</i> Click to call</a>
+
+                  {% if profile.agent %}
+                  {% else %}
+                    <form action="{% url 'profile' profile.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-warning btn-round">Claim Prospect</button>
+                    </form>
+                {% endif %}
+
+                </div>
+              </div>
+
+
+
+{% if profile.converted == True %}
+
+<p class="text-center"><i>Account Converted</i></p>
+
+{% else %}
+
+
+<!-- Update Lead-->
+{% if profile.decision_maker %}
+{% else %}
+ <form action="{% url 'update-account' profile.id %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group" id="url_section">
+        <input name="email" type="email" class="form-control" placeholder="Best email for prospect" required>
+        <input name="decision-maker" type="text" class="form-control" placeholder="Decision maker full name" required>
+    </div>
+    <div class="text-center">
+     <button type="submit" class="btn btn-success">Update to Close Deal</button>
+     <p><small><i>Need email and decision maker to close deal</i></small></p>
+    </div>
+</form>
+
+
+
+<div class="text-center mb-4">
+<a href="{% url 'do-not-call' profile.id %}" class="text-danger"> Add to "Do Not Call" List</a>
+</div>
+
+
+
+{% endif %}
+
+    <div class="card text-center">
+        <div class="card-body">
+            <button type="button" data-toggle="modal" data-target="#CloseDealModal" class="btn btn-warning btn-round">Close Deal</button>
+        </div>
+    </div>
+{% endif %}
+
+
+
+<form action="{% url 'create-note' profile.id %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group" id="url_section">
+        <textarea class="form-control" name="body" rows="5" cols="50" required>
+
+         </textarea>
+    </div>
+    <div class="text-center">
+     <button type="submit" class="btn btn-success">Add Note</button>
+    </div>
+</form>
+
+{% for note in notes %}
+    <p>{{note.body}} - <small><i>{{note.created_at|date:"M d, Y"}}</i></small></p>
+{% endfor %}
+{% endif %}
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+<!-- Copy Text to Clipboard -->
+        <script>
+         var copy_elements = document.querySelectorAll("[data-copy-text]");
+          var copy_count;
+
+          for (copy_count = 0; copy_count < copy_elements.length; copy_count++) {
+              copy_elements[copy_count].addEventListener("click", async(event) => {
+                  if (!navigator.clipboard) {
+                      return;
+                  }
+
+                  try {
+                      var copy_value = event.srcElement.getAttribute("data-copy-text");
+                      await navigator.clipboard.writeText(copy_value);
+                      window.alert(copy_value + ' copied to clipboard')
+                      //show the timer
+                      timer = document.getElementById('timer');
+                      timer.style.display = 'block';
+                  } catch (error) {
+                      console.error("copy failed", error);
+                  }
+              });
+
+
+          }
+
+
+        </script>
+
+
+
+
+          <!-- Modal -->
+            <div class="modal fade" id="CloseDealModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Verification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <h3>By clicking the button, you agree this deal has been closed and the company is expecting our admin team to follow up. <b><u>Thank You and Congratulations!</u></b></h4>
+                    <a href="{% url 'close-deal' profile.id %}" class="btn btn-warning btn-round">Close Deal and Notify Admin</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+{% if claimed %}
+    <script>
+        window.alert('Good job, you claimed this prospect!')
+    </script>
+{% endif %}
+
+{% endblock content %}

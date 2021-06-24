@@ -1,0 +1,55 @@
+{% extends "salesmgr/base.html" %} {% block content %}
+
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Agent Pipeline</h4>
+                  <p class="card-category">See open accounts</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Business Name
+                        </th>
+                        <th>
+                          Telephone
+                        </th>
+                        <th>
+                          Address
+                        </th>
+                        <th>
+                          Details
+                        </th>
+                      </thead>
+                      <tbody>
+                        {% for account in accounts %}
+                          <tr>
+                            <td>
+                              {{ account.biz_name }}
+                            </td>
+                            <td>
+                              {{ account.phone }}
+                            </td>
+                            <td>
+                              {{ account.address }}
+                            </td>
+                            <td>
+                              <a class="btn btn-success btn-round" href="{% url 'profile' account.id %}">DETAILS</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+{% endblock content %}

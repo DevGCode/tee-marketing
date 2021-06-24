@@ -1,0 +1,63 @@
+{% extends "theapp/base.html" %} {% block content %}
+
+{% load static %}
+
+
+<style>
+
+
+  p, h4 {
+    color:#fff;
+  }
+</style>
+
+
+  <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-body">
+
+        <h2 class="jumbotron">
+            Active Discussions: {{count}}
+            <br>
+            <a class="btn btn-success btn-round" href="{% url 'add-discussion' %}">Start a discussion</a>
+            <br>
+            <a class="btn btn-warning btn-round" href="{% url 'tech-support' %}">
+                  Send Direct Message to Manager
+                </a>
+        </h2>
+
+
+
+
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+<div class="container">
+<div class="row">
+
+        {%for discussion in discussions %}
+        <div class="col-md-8">
+        <div class="card" style="padding:4%;">
+
+
+                        <a style="color:#4ea752;" href="{% url 'discussion' discussion.pk %}"><h3>{{discussion.topic}}</h3></a>
+
+                                <p>{{discussion.description}}</p>
+
+                            <p> Posted By: {{discussion.username}}</p>
+</div></div>
+            {% endfor %}
+            </div>
+            </div>
+
+
+{% endblock content %}

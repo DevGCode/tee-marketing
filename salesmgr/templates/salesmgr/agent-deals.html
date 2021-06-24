@@ -1,0 +1,121 @@
+{% extends "salesmgr/base.html" %} {% block content %}
+
+<style>
+h4{color:#fff;font-size:22px;}
+</style>
+
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Agent Deals</h4>
+                  <p class="card-category">See all converted accounts</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                  <br><br>
+                    <h4 class="text-center">Courses Needing Sponsors</h4>
+                    <a href="{% url 'course-needs-sponsors' %}" class="btn btn-success btn-round pull-right">Add Course</a>
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Business Name
+                        </th>
+                        <th>
+                          Cohort
+                        </th>
+                        <th>
+                          Details
+                        </th>
+                      </thead>
+                      <tbody>
+                        {% for account in active_accounts %}
+                          <tr>
+                            <td>
+                              {{ account.biz_name }}
+                            </td>
+                            <td>
+                              <a class="btn btn-warning btn-round" href="{% url 'create-cohort' account.id %}">UPDATE COHORT</a>
+                            </td>
+                            <td>
+                              <a class="btn btn-success btn-round" href="{% url 'profile' account.id %}">DETAILS</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+
+                   <br><br>
+                    <h4 class="text-center">Courses With Sponsors</h4>
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Business Name
+                        </th>
+                        <th>
+                          Cohort
+                        </th>
+                        <th>
+                          Details
+                        </th>
+                      </thead>
+                      <tbody>
+                        {% for account in closed_accounts %}
+                          <tr>
+                            <td>
+                              {{ account.biz_name }}
+                            </td>
+                            <td>
+                              <a class="btn btn-dark btn-round" href="{% url 'create-cohort' account.id %}">VIEW COHORT</a>
+                            </td>
+                            <td>
+                              <a class="btn btn-success btn-round" href="{% url 'profile' account.id %}">DETAILS</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+
+
+                   <br><br>
+                    <h4 class="text-center">All Sponsors</h4>
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Business Name
+                        </th>
+                        <th>
+                          Address
+                        </th>
+                        <th>
+                          Details
+                        </th>
+                      </thead>
+                      <tbody>
+                        {% for account in sponsors %}
+                          <tr>
+                            <td>
+                              {{ account.biz_name }}
+                            </td>
+                            <td>
+                              {{ account.address }}
+                            </td>
+                            <td>
+                              <a class="btn btn-success btn-round" href="{% url 'profile' account.id %}">DETAILS</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+{% endblock content %}

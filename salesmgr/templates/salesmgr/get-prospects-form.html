@@ -1,0 +1,36 @@
+{% extends "salesmgr/base.html" %} {% block content %}
+
+<style>
+h4{color:#fff;font-size:22px;}
+</style>
+
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Get Prospects</h4>
+                  <p class="card-category">Scrape YellowPages.com for golf course prospects</p>
+                </div>
+                <div class="card-body text-center">
+
+                  <form
+                    action="{% url 'get-prospects' %}"
+                    method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-warning">
+                        Generate Golf Course Prospects
+                      </button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+{% endblock content %}

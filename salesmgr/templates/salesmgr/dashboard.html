@@ -1,0 +1,71 @@
+{% extends "salesmgr/base.html" %} {% block content %}
+
+<div class="container-fluid">
+
+
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Your Sales History</h4>
+                  <p class="card-category">Track your team</p>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>Account</th>
+                      <th>Date</th>
+                      <th>Username</th>
+                    </thead>
+                    <tbody>
+                  {% for account in accounts %}
+                      <tr>
+                        <td><a href="{% url 'profile' account.id %}" target="__blank">{{ account.biz_name }}</a></td>
+                        <td>{{ account.converted_date|date:"M d, Y" }}</td>
+                        <td>{{ account.agent.username }}</td>
+                      </tr>
+                  {% endfor %}
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-warning">
+                   <h3>Task Manager</h3>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div>
+                     <a href="{% url 'create-admin-task' %}" rel="tooltip" title="Add New Task" class="btn btn-success btn-sm">
+                      <i class="material-icons">add</i>
+                     </a>
+                      <table class="table">
+                        <tbody>
+                      {% if tasks %}
+                          {% for task in tasks %}
+                            <tr>
+                              <td>{{ task.description }}</td>
+                              <td class="td-actions text-right">
+                                <a href="{% url 'delete-admin-task' task.id %}" rel="tooltip" title="Remove" class="btn btn-white btn-link btn-sm">
+                                  <i class="material-icons">close</i>
+                                </a>
+                              </td>
+                            </tr>
+                          {% endfor %}
+                      {% else %}
+                        <p class="mt-4">You're all caught up</p>
+                      {% endif %}
+
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock content %}

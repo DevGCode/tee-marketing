@@ -1,0 +1,32 @@
+{% extends "salesmgr/base.html" %} {% block content %}
+
+<div class="container-fluid">
+
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Support Hub</h4>
+                  <p class="card-category">Assist your team</p>
+                </div>
+                <div class="card-body table-responsive">
+                    <form action="{% url 'course-needs-sponsors' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group" id="url_section">
+                        <select name="course" style="width:20%;">
+                              {% for course in courses %}
+                                <option value="{{course.id}}">{{course.biz_name}}</option>
+                              {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Activate Needs Sponsors</button>
+                    </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock content %}

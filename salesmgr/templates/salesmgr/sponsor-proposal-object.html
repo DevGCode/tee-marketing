@@ -1,0 +1,340 @@
+
+
+
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+
+ {% load static %}
+
+   <!-- <meta content="text/html; charset=UTF-8" http-equiv="content-type" /> -->
+    <style type="text/css">
+      @import url("https://themes.googleusercontent.com/fonts/css?kit=-lTUqgJg2dxbe4D7B5DEIA3jn2WilaVUapNOYl4762s");
+      ol {
+        margin: 0;
+        padding: 0;
+      }
+      table td,
+      table th {
+        padding: 0;
+      }
+      .c1 {
+        color: #000000;
+
+        text-decoration: none;
+        vertical-align: baseline;
+        font-size: 19pt;
+        font-family: "Montserrat";
+        font-style: normal;
+      }
+      .c18 {
+        color: #000000;
+
+        text-decoration: none;
+        vertical-align: baseline;
+        font-size: 11pt;
+        font-family: "Arial";
+        font-style: normal;
+      }
+      .c0 {
+        padding-top: 0.7pt;
+        padding-bottom: 0pt;
+        line-height: 1.15;
+        text-align: left;
+        height: 11pt;
+      }
+      .c19 {
+        color: #000000;
+        text-decoration: none;
+        vertical-align: baseline;
+        font-size: 15pt;
+        font-style: normal;
+      }
+      .c13 {
+        padding-top: 20.6pt;
+        padding-bottom: 0pt;
+        line-height: 1.15;
+        text-align: left;
+      }
+      .c6 {
+        padding-top: 0.7pt;
+        padding-bottom: 0pt;
+        line-height: 1.15;
+        text-align: center;
+      }
+      .c14 {
+        padding-top: 13.9pt;
+        padding-bottom: 0pt;
+        line-height: 1.0227717161178589;
+        text-align: left;
+      }
+      .c16 {
+        color: #000000;
+        text-decoration: none;
+        vertical-align: baseline;
+        font-style: italic;
+      }
+      .c10 {
+        padding-top: 20.6pt;
+        padding-bottom: 0pt;
+        line-height: 1.15;
+        text-align: center;
+      }
+      .c5 {
+        padding-top: 13.9pt;
+        padding-bottom: 0pt;
+        line-height: 1.0227733850479126;
+        text-align: left;
+      }
+      .c9 {
+        padding-top: 0.7pt;
+        padding-bottom: 0pt;
+        line-height: 1.15;
+        text-align: left;
+      }
+      .c15 {
+        padding-top: 13.9pt;
+        padding-bottom: 0pt;
+        line-height: 1.0227723121643066;
+        text-align: left;
+      }
+      .c17 {
+        padding-top: 3.8pt;
+        padding-bottom: 0pt;
+        line-height: 1.0227677822113037;
+        text-align: left;
+      }
+      .c8 {
+        padding-top: 0.4pt;
+        padding-bottom: 0pt;
+        line-height: 1.0227731466293335;
+        text-align: left;
+      }
+      .c2 {
+        padding-top: 26.1pt;
+        padding-bottom: 0pt;
+        line-height: 1.15;
+        text-align: left;
+      }
+      .c12 {
+        padding-top: 13.9pt;
+        padding-bottom: 0pt;
+        line-height: 1.022770643234253;
+        text-align: left;
+      }
+      .c3 {
+        font-size: 19pt;
+        font-family: "Montserrat";
+
+      }
+      .c7 {
+        background-color: #ffffff;
+        max-width: 1000pt;
+        padding: 0pt 72pt 72pt 72pt;
+      }
+      .c4 {
+
+        font-family: "Montserrat";
+      }
+      .c11 {
+
+        font-family: "Montserrat";
+      }
+      .title {
+        padding-top: 0pt;
+        color: #000000;
+        font-size: 26pt;
+        padding-bottom: 3pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+      }
+      .subtitle {
+        padding-top: 0pt;
+        color: #666666;
+        font-size: 15pt;
+        padding-bottom: 16pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+      }
+      li {
+        color: #000000;
+        font-size: 19pt;
+        font-family: "Arial";
+      }
+      p {
+        margin: 0;
+        color: #000000;
+        font-size: 20pt;
+        font-family: "Arial";
+      }
+      h1 {
+        padding-top: 20pt;
+        color: #000000;
+        font-size: 20pt;
+        padding-bottom: 6pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+      }
+      h2 {
+        padding-top: 18pt;
+        color: #000000;
+        font-size: 16pt;
+        padding-bottom: 6pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+      }
+      h3 {
+        padding-top: 16pt;
+        color: #434343;
+        font-size: 14pt;
+        padding-bottom: 4pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+      }
+      h4 {
+        padding-top: 14pt;
+        color: #666666;
+        font-size: 12pt;
+        padding-bottom: 4pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+      }
+      h5 {
+        padding-top: 12pt;
+        color: #666666;
+        font-size: 11pt;
+        padding-bottom: 4pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+      }
+      h6 {
+        padding-top: 12pt;
+        color: #666666;
+        font-size: 11pt;
+        padding-bottom: 4pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        font-style: italic;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+      }
+
+.navbar.navbar-transparent{
+  display:none;
+}
+    </style>
+
+
+
+ <div class="c7">
+ <p class="c10">
+        <img src="{% static 'img/logo.png' %}" style="
+            width: 425px;
+            height: auto;
+            margin-left: 0px;
+            margin-top: 0px;
+            transform: rotate(0rad) translateZ(0px);
+            -webkit-transform: rotate(0rad) translateZ(0px);
+          " alt="..." />
+    </p>
+    <p class="c13"><span class="c1">{{lead_pdf.date|date:"M d, Y"}} </span></p>
+    <p class="c0"><span class="c1"></span></p>
+    <p class="c9"><span class="c1">{{lead_pdf.full_name|title}}</span></p>
+    <p class="c9"><span class="c1">{{lead_pdf.biz_name|title}}</span></p>
+    <p class="c9">
+      <span class="c1">RE: {{lead_pdf.biz_name|title}} Golf Scorecards Marketing </span>
+    </p>
+  <br><br><br>
+    <p class="c9"><span class="c1">Dear {{lead_pdf.first_name|title}},</span></p>
+    <p class="c0"><span class="c1"></span></p>
+    <p class="c17">
+      <span class="c3">Thank&nbsp;you&nbsp;very&nbsp;much&nbsp;for&nbsp;allowing&nbsp;us&nbsp;the&nbsp;opportunity&nbsp;to&nbsp;market&nbsp;{{lead_pdf.biz_name|title}}. We&#39;d be honored to work with {{lead_pdf.biz_name|title}} and believe we&rsquo;d be a great fit to help golf patrons find your business.</span>
+        <p class="c0"><span class="c1"></span></p>
+    </p>
+    <p class="c14">
+      <span class="c1"
+        >Within this document, you&rsquo;ll find our media kit which
+        demonstrates the value our company would bring yours.
+      </span>
+      <p class="c0"><span class="c1"></span></p>
+    </p>
+
+    <p class="c5">
+      <span class="c1"
+        >We&nbsp;would&nbsp;like&nbsp;to&nbsp;schedule&nbsp;some&nbsp;time&nbsp;with&nbsp;you.
+      </span>
+      <span class="c1"
+        >Please let us know what works best for you.&nbsp;
+      </span>
+      <p class="c0"><span class="c1"></span></p>
+    </p>
+    <p class="c2">
+      <span class="c1">Thank you again for the opportunity,&nbsp; </span>
+    </p>
+    <p class="c2">
+         <img src="{% static 'img/signature.jpeg' %}" style="
+            width: 350px;
+            height: auto;
+            margin-left: 0px;
+            margin-top: 0px;
+            transform: rotate(0rad) translateZ(0px);
+            -webkit-transform: rotate(0rad) translateZ(0px);
+          " alt="..." />
+    </p>
+    <p class="c2"><span class="c1">John B. Smith&nbsp; </span></p>
+    <p class="c9"><span class="c1">Co-Founder&nbsp;&nbsp; </span></p>
+    <p class="c9"><span class="c1">Tee Marketing&nbsp; &nbsp;</span></p>
+    <p class="c0"><span class="c18"></span></p>
+    <div>
+    <br><br>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+{% extends "salesmgr/base.html" %} {% block content %}
+
+<style>
+h4{color:#fff;font-size:22px;}
+</style>
+
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                <p class="btn btn-round btn-warning pull-right" onclick="showCSV()">Upload CSV</p>
+                  <h4 class="card-title ">Make Proposals</h4>
+                  <p class="card-category">Auto generate proposal PDFs</p>
+                </div>
+                <div class="card-body text-center">
+
+                  <form id="single_form" action="{% url 'make-proposals' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input class="form-control" name="name" type="text" placeholder="Prospects full name" required/>
+                      <input class="form-control mb-3 mt-2" name="biz" type="text" placeholder="Prospects business name" required/>
+                      <div>
+                        <input type="radio" id="scorecard" name="prospect-type" value="scorecard" required>
+                        <label for="scorecard">Scorecard</label>
+                      </div>
+                      <div>
+                        <input type="radio" id="sponsor" name="prospect-type" value="sponsor" required>
+                        <label for="sponsor">Sponsor</label>
+                      </div>
+                      <button type="submit" class="submit btn btn-success btn-round">Create Proposal</button>
+                    </div>
+                  </form>
+
+
+
+                 <form
+                    style="display:none;"
+                    id="csv_form"
+                    action="{% url 'csv-proposals' %}"
+                    method="POST"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div>
+                        <input type="radio" id="scorecard" name="prospect-type" value="scorecard" required>
+                        <label for="scorecard">Scorecard</label>
+                      </div>
+                      <div>
+                        <input type="radio" id="sponsor" name="prospect-type" value="sponsor" required>
+                        <label for="sponsor">Sponsor</label>
+                      </div>
+                      <input type="file" name="csv_file" class="form-control" />
+                      <button type="submit" class="btn btn-warning btn-round">
+                        Upload CSV
+                      </button>
+
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <script>
+         function showCSV() {
+            form = document.getElementById('csv_form');
+            form.style.display = "block";
+            single_form = document.getElementById('single_form');
+            single_form.style.display = "none";
+          }
+        </script>
+
+
+{% endblock content %}

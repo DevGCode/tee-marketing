@@ -1,0 +1,18 @@
+{% extends 'theapp/base.html' %} {% block content %} {% load static %}
+
+
+  <div class="container">
+    <div class="row">
+    <div class="col-lg-6">
+      <div class="box-element form-group center-form" id="form-wrapper">
+        <form method="POST">
+          {% csrf_token %} {{ form.as_p }}
+          <button class="btn btn-success btn-round">Update Script</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends "theapp/base.html" %} {% block content %}
+
+{% load static %}
+
+
+
+  <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <a href="https://www.yellowpages.com/sitemap" class="btn btn-sm btn-warning btn-round pull-right" target="__blank">Find Prospects by Locale</a>
+                  <h4 class="card-title">Add a Prospect</h4>
+                  <p class="card-category">Save your prospect's basic info</p>
+                </div>
+                <div class="card-body">
+
+
+        <form action="{% url 'create-prospect' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group" id="url_section">
+              <input name="biz_name" type="text" class="form-control" placeholder="Business name" required>
+              <input name="phone" type="text" class="form-control" placeholder="Phone Number" required>
+              <input name="link" type="text" class="form-control" placeholder="Web/Social URL" required>
+              <input name="address" type="text" class="form-control" placeholder="Address" required>
+            </div>
+              <button type="submit" class="btn btn-success">Create Prospect</button>
+        </form>
+
+
+
+
+                </div>
+              </div>
+            </div>
+            {% if needs_sponsors %}
+            <div class="col-md-4">
+              <div class="card card-profile">
+                <div class="card-body mb-3">
+                  <h4 class="card-title mt-3 mb-3">Needs Sponsoring</h4>
+
+                    {% for course in needs_sponsors %}
+                      <a style="color:#4ea752;" href="{% url 'profile' course.id %}">{{ course.biz_name }}</a>
+                      <br>
+                    {% endfor %}
+
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+{% endblock content %}

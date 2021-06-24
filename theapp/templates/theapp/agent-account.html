@@ -1,0 +1,32 @@
+{% extends "theapp/base.html" %} {% block content %}
+
+{% load static %}
+
+<style>
+#id_password{display:none;}
+.helptext{display:none;}
+</style>
+
+  <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Edit Profile</h4>
+                  <p class="card-category">Update your settings</p>
+                </div>
+                <div class="card-body">
+                 <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                <a href="{% url 'password' %}" class="btn btn-warning btn-sm btn-round">Change Password</a>
+                <br><br>
+                  <button class="btn btn-success btn-round">Update Profile</button>
+                </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+{% endblock content %}

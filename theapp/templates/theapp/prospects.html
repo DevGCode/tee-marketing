@@ -1,0 +1,56 @@
+{% extends "theapp/base.html" %} {% block content %}
+
+
+
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Public Prospects</h4>
+                  <p class="card-category">Here are available prospects</p>
+
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Business Name
+                        </th>
+                        <th>
+                          Address
+                        </th>
+                        <th>
+                          Details
+                        </th>
+                      </thead>
+                      <tbody>
+                        {% for prospect in prospects %}
+                          <tr>
+                            <td>
+                              {{ prospect.biz_name }}
+                            </td>
+                            <td>
+                              {{ prospect.address }}
+                            </td>
+                            <td>
+                              <a class="btn btn-success btn-round" href="{% url 'profile' prospect.id %}">DETAILS</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+    <p class="text-center text-warning"><i>Showing 10 of {{prospects_count}} Prospects</i></p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+{% endblock content %}

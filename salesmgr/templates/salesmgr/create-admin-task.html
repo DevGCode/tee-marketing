@@ -1,0 +1,21 @@
+{% extends 'salesmgr/base.html' %} {% block content %} {% load static %}
+
+
+  <div class="container">
+    <div class="row">
+    <div class="col-lg-6">
+      <div class="box-element form-group center-form" id="form-wrapper">
+         <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input name="description" type="text" class="form-control" placeholder="Task description.." required>
+            </div>
+              <button type="submit" class="btn btn-success">Add Task</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+{% endblock content %}

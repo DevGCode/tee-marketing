@@ -1,0 +1,111 @@
+{% extends "theapp/base.html" %} {% block content %}
+
+<div class="container-fluid">
+
+
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Your Sales History</h4>
+                  <p class="card-category">Track your progress</p>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>Account</th>
+                      <th>Date</th>
+                      <th>Commission</th>
+                    </thead>
+                    <tbody>
+                  {% for account in accounts %}
+                      <tr>
+                        <td><a href="{% url 'profile' account.id %}" target="__blank">{{ account.biz_name }}</a></td>
+                        <td>{{ account.converted_date|date:"M d, Y" }}</td>
+                        <td>$500</td>
+                      </tr>
+                  {% endfor %}
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-warning">
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <ul class="nav nav-tabs mt-1 mb-1" data-tabs="tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#profile" data-toggle="tab">
+                            <i class="material-icons">golf_course</i> Scorecards
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#messages" data-toggle="tab">
+                            <i class="material-icons">house</i> Sponsors
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="profile">
+                     <a href="{% url 'create-course-task' %}" rel="tooltip" title="Add New Task" class="btn btn-success btn-sm">
+                      <i class="material-icons">add</i>
+                     </a>
+                      <table class="table">
+                        <tbody>
+                        {% if course_tasks %}
+                        {% for task in course_tasks %}
+                          <tr>
+                            <td>{{ task.description }}</td>
+                            <td class="td-actions text-right">
+                              <a href="{% url 'delete-task' task.id %}" rel="tooltip" title="Remove" class="btn btn-white btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        {% else %}
+                          <p class="mt-4">Add some tasks here</p>
+                        {% endif %}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="tab-pane" id="messages">
+                    <a href="{% url 'create-sponsor-task' %}" rel="tooltip" title="Add New Task" class="btn btn-success btn-sm">
+                      <i class="material-icons">add</i>
+                     </a>
+                      <table class="table">
+                        <tbody>
+                         {% if sponsor_tasks %}
+                          {% for task in sponsor_tasks %}
+                          <tr>
+                            <td>{{ task.description }}</td>
+                            <td class="td-actions text-right">
+                              <a href="{% url 'delete-task' task.id %}" rel="tooltip" title="Remove" class="btn btn-white btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        {% else %}
+                          <p class="mt-4">Add some tasks here</p>
+                        {% endif %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock content %}

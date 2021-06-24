@@ -1,0 +1,96 @@
+{% extends "theapp/base.html" %} {% block content %}
+
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <a href="{% url 'create-prospect' %}" class="btn btn-warning pull-right">Create Prospect</a>
+                  <h4 class="card-title ">Your Prospects</h4>
+                  <p class="card-category">Your personal prospects</p>
+                </div>
+                <div class="card-body">
+                  <h3 class="text-center text-warning">Golf Course Prospects</h3>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Business Name
+                        </th>
+                        <th>
+                          Telephone
+                        </th>
+                        <th>
+                          Address
+                        </th>
+                        <th>
+                          Details
+                        </th>
+                      </thead>
+                      <tbody>
+                        {% for account in course_accounts %}
+                          <tr>
+                            <td>
+                              {{ account.biz_name }}
+                            </td>
+                            <td>
+                              {{ account.phone }}
+                            </td>
+                            <td>
+                              {{ account.address }}
+                            </td>
+                            <td>
+                              <a class="btn btn-success btn-round" href="{% url 'profile' account.id %}">DETAILS</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <hr>
+                   <h3 class="text-center text-warning">Sponsor Prospects</h3>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Business Name
+                        </th>
+                        <th>
+                          Telephone
+                        </th>
+                        <th>
+                          Address
+                        </th>
+                        <th>
+                          Details
+                        </th>
+                      </thead>
+                      <tbody>
+                        {% for account in sponsor_accounts %}
+                          <tr>
+                            <td>
+                              {{ account.biz_name }}
+                            </td>
+                            <td>
+                              {{ account.phone }}
+                            </td>
+                            <td>
+                              {{ account.address }}
+                            </td>
+                            <td>
+                              <a class="btn btn-success btn-round" href="{% url 'profile' account.id %}">DETAILS</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+{% endblock content %}

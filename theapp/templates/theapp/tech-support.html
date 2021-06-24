@@ -1,0 +1,39 @@
+{% extends "theapp/base.html" %} {% block content %}
+
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">General Support</h4>
+                  <p class="card-category">Report a bug or get help</p>
+                </div>
+                <div class="card-body">
+
+
+
+             <form action="{% url 'tech-support' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group" id="url_section">
+                <input name="subject" type="text" class="form-control" placeholder="What can we help with?" required>
+                <input name="body" type="text" class="form-control" placeholder="Write details here.." required>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+{% if submitted %}
+    <script>
+        window.alert('Your support request was sent. Thank you!')
+    </script>
+{% endif %}
+
+{% endblock content %}
