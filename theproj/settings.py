@@ -16,8 +16,7 @@ SECRET_KEY = 'django-insecure-$jc)i!ljtqp%g7&kk(5oibks+u0h3s()#@k_k5xw%723^+s52y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tee-marketing.herokuapp.com', '127.0.0.1']
-
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -137,7 +136,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # EMAIL
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'ottomalerr@gmail.com'
-EMAIL_HOST_PASSWORD = 'asf938V(E*DLCM3pc8*()C@'
+EMAIL_HOST_USER = 'insertyouremail'
+EMAIL_HOST_PASSWORD = 'insertyourpassword'
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False

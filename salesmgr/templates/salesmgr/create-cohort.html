@@ -22,7 +22,7 @@
                         {% csrf_token %}
                         <div class="form-group" id="url_section">
                           <p>Select a Sponsor:</p>
-                          <p><small>Max: 20</small></p>
+                          <p><small>Max: 4</small></p>
                           <br>
                             <select name="sponsor" style="width:20%;">
                               {% for sponsor in sponsor_accounts%}
@@ -48,7 +48,7 @@
                       {% csrf_token %}
                       <div class="form-group" id="url_section">
                       <p>Select Sponsors:</p>
-                      <p><small>Max: 20</small></p>
+                      <p><small>Max: 4</small></p>
                       <br>
                         <select name="sponsors" multiple style="width:20%;">
                           {% for sponsor in sponsor_accounts%}

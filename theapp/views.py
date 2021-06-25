@@ -126,7 +126,7 @@ def tech_support(request):
             'You got a support request!',
             'From ' + support.agent.username +  '. Reply to them via email at: ' + support.agent.email + '.  ---------   Subject: ' + support.subject + '.   ---------    Body: ' + support.body,
             'from@team.com',
-            ['devoncodes@protonmail.com'],
+            ['email@email.com'],
             fail_silently=False,
         )
 
@@ -175,7 +175,7 @@ class update_voicemail(UpdateView):
 def create_scripts(request, pk):
     # Create Golf Course Call Script
     title = 'Golf Course Call Script'
-    body = 'Good Am/Pm, may I speak with whoever handles the golf scorecards? (Wait for Answer) My name is […] with Western Specialty Products, I have a scorecard program that can benefit you and your golf course. Do you have a minute to let me explain why we offer the best scorecards available?  (Wait for Answer - if OK:) Our admin team will go over the details with you. (Go over incentive PDF. Then follow up with the email below to our admin team.) '
+    body = 'Good Am/Pm, may I speak with whoever handles the golf scorecards? (Wait for Answer) My name is […] with Tee Marketing, I have a scorecard program that can benefit you and your golf course. Do you have a minute to let me explain why we offer the best scorecards available?  (Wait for Answer - if OK:) Our admin team will go over the details with you. (Go over incentive PDF. Then follow up with the email below to our admin team.) '
 
     scripts = Script.objects.create(
                         agent=request.user,
@@ -185,7 +185,7 @@ def create_scripts(request, pk):
                     )
     # Create Golf Course Voicemail Script
     title = 'Golf Course Voicemail Script'
-    body = 'Good Am/Pm, My name is […] with Western Specialty Products, I have a scorecard program that can benefit you and your golf course. If you could give me a shout back, I would love to explain why we offer the best scorecards available. My number is...'
+    body = 'Good Am/Pm, My name is […] with Tee Marketing, I have a scorecard program that can benefit you and your golf course. If you could give me a shout back, I would love to explain why we offer the best scorecards available. My number is...'
     scripts = VoicemailScript.objects.create(
                         agent=request.user,
                         title=title,
@@ -195,7 +195,7 @@ def create_scripts(request, pk):
 
     # Sponsor Call Script
     title = 'Sponsor Call Script'
-    body = 'Good Am/Pm, may I speak with whoever handles your marketing? (Wait for Answer) My name is […] with Western Specialty Products, I have a local marketing program that can benefit you and your business. Do you have a minute to let me explain?  (Wait for Answer - if OK:) (Go over incentive PDF. Then follow up with the email below to our admin team.) '
+    body = 'Good Am/Pm, may I speak with whoever handles your marketing? (Wait for Answer) My name is […] with Tee Marketing, I have a local marketing program that can benefit you and your business. Do you have a minute to let me explain?  (Wait for Answer - if OK:) (Go over incentive PDF. Then follow up with the email below to our admin team.) '
 
     scripts = Script.objects.create(
                         agent=request.user,
@@ -205,7 +205,7 @@ def create_scripts(request, pk):
                     )
     # Create Sponsor Voicemail Script
     title = 'Sponsor Voicemail Script'
-    body = 'Good Am/Pm, My name is […] with Western Specialty Products, I have a scorecard program that can benefit you and your golf course. If you could give me a shout back, I would love to go over a local marketing program that can benefit you and your business. My number is...'
+    body = 'Good Am/Pm, My name is […] with Tee Marketing, I have a scorecard program that can benefit you and your golf course. If you could give me a shout back, I would love to go over a local marketing program that can benefit you and your business. My number is...'
     scripts = VoicemailScript.objects.create(
                         agent=request.user,
                         title=title,
@@ -261,7 +261,7 @@ def close_deal(request, pk):
             'New Account Needs Follow Up!',
             'Business: ' + account.biz_name  + ' --- Decision Maker: ' + account.decision_maker + ' --- Email: ' + account.email + ' --- Phone: ' + account.phone + ' --- URL: ' + account.link,
             'from@team.com',
-            ['devoncodes@protonmail.com'],
+            ['email@email.com'],
             fail_silently=False,
         )
 

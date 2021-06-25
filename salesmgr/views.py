@@ -121,7 +121,7 @@ def course_needs_sponsors(request):
 def agent_pipeline(request):
 
     accounts = Account.objects.filter(converted=False)
-    accounts = accounts.filter(agent=True)
+
 
     return render(request, 'salesmgr/agent-pipeline.html', {'accounts':accounts})
 
@@ -228,16 +228,16 @@ def get_prospects(request):
                 link = 'https://www.yellowpages.com' + link
 
 
-                try:
-                    prospect = Account.objects.create(
-                            is_course=True,
-                            biz_name=biz_name,
-                            phone=phone,
-                            address=address,
-                            link=link
-                        )
-                except IntegrityError as e:
-                    pass
+                # try:
+                #     prospect = Account.objects.create(
+                #             is_course=True,
+                #             biz_name=biz_name,
+                #             phone=phone,
+                #             address=address,
+                #             link=link
+                #         )
+                # except IntegrityError as e:
+                #     pass
 
                 # the sub strings below make sure we don't grab
                 # any problematic prospects (TESTED AND THIS IS A MUST)
@@ -380,7 +380,7 @@ def get_prospects(request):
 
 
             # Generating the next page url in the pagination
-            if page_number < 20:
+            if page_number < 10:
                 page_number = page_number + 1
                 getprospects(webpage, page_number)
 
@@ -590,7 +590,7 @@ def get_prospects(request):
         # find all locales and loop through them
         for locale in locales:
             # calling the function with relevant parameters
-            getprospects('https://www.yellowpages.com/search?search_terms=Food%20truck&geo_location_terms=' + locale + '&page=', 0)
+            getprospects('https://www.yellowpages.com/search?search_terms=Golf%20courses&geo_location_terms=' + locale + '&page=', 0)
 
 
         return render(request, 'salesmgr/get-prospects-form.html', {})
@@ -612,14 +612,12 @@ def get_course_prospects(request):
 
 
 
-@user_passes_test(lambda u: u.is_superuser)
 def sponsor_pdf(request, pk):
     lead_pdf = LeadPDF.objects.get(id=pk)
     return render(request, 'salesmgr/sponsor-proposal-object.html', {'lead_pdf':lead_pdf})
 
 
 
-@user_passes_test(lambda u: u.is_superuser)
 def scorecard_pdf(request, pk):
     lead_pdf = LeadPDF.objects.get(id=pk)
     return render(request, 'salesmgr/scorecard-proposal-object.html', {'lead_pdf':lead_pdf})

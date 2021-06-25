@@ -60,7 +60,7 @@
                   <h4>Scorecard Script</h4>
 
                     {% for script in golf_scripts %}
-                        <p style="color:#4ea752;">{{script.body}}</p>
+                        <p style="color:#4ea752;">{{script.body|safe}}</p>
                         <br>
                         <a href="{% url 'update-script' script.id %}" class="btn btn-sm btn-success btn-round">Update</a>
                     {% endfor %}
@@ -70,7 +70,7 @@
                   <h4>Scorecard Voicemail</h4>
 
                   {% for script in golf_voicemails %}
-                        <p style="color:#4ea752;">{{script.body}}</p>
+                        <p style="color:#4ea752;">{{script.body|safe}}</p>
                         <br>
                         <a href="{% url 'update-voicemail' script.id %}" class="btn btn-sm btn-success btn-round">Update</a>
                     {% endfor %}
